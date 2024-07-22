@@ -25,3 +25,4 @@ pip install opencv-python==4.10.0.84
 ```
 
 ## Useful links for debugging
+1. How to install dlib on different OS [(Refer this link)](https://gist.github.com/ageitgey/629d75c1baac34dfa5ca2a1928a7aeaf)
