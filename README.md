@@ -11,6 +11,14 @@ Face recognition model
 Face database
 - All faces should be stored in ```SimpleFR/database```
 
+## Files organization
+SimpleFR
+├── database
+│   ├── <4 digit>_<name 1>.jpg
+│   ├── <4 digit>_<name 2>.jpg
+├── dlib
+├── ask.py  
+
 ## Setup
 Create conda environment
 ```bash
