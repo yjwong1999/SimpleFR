@@ -1,4 +1,4 @@
-# Sample videos
+# Sample videos for trial and error
 
 ### Video_1.mp4
 - Western faces.
