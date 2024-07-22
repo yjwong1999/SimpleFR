@@ -46,8 +46,13 @@ pip install opencv-python==4.10.0.84
 ```
 
 ## Find port number connected to camera
-```
+```bash
 python3 find_port.py
+```
+
+## Run the code now!
+```bash
+python3 run.py
 ```
 
 ## Known errors and solutions related to face_recognition and opencv api
