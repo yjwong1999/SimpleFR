@@ -1,9 +1,12 @@
 # SimpleFR
 
+## Setup
+Create conda environment
+```bash
 conda create --name ws python=3.11 -y
 conda activate ws
+```
 
-## Setup
 Install dlib on macos and Ubuntu
 ```bash
 git clone https://github.com/davisking/dlib.git
@@ -16,7 +19,7 @@ cd ../
 ```
 
 Install the face recognition api
-```
+```bash
 pip install face-recognition==1.3.0
 pip install opencv-python==4.10.0.84
 ```
