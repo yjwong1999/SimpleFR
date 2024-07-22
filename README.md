@@ -1,5 +1,5 @@
 # SimpleFR
-This is a very simple face recognition code based on [face recognition api](https://github.com/ageitgey/face_recognition). The face recognition is built using [dlib's](https://github.com/davisking/dlib) state-of-the-art face recognition built with deep learning. The model has an accuracy of 99.38% on the Labeled Faces in the Wild benchmark.
+This is a very simple face recognition code based on [face recognition api](https://github.com/ageitgey/face_recognition). The face recognition is built using [dlib's](https://github.com/davisking/dlib) state-of-the-art face recognition built with deep learning. The model has an accuracy of 99.38% on the Labeled Faces in the Wild benchmark. The Graphic User Interface (GUI) is based on tkinter for simplict's sake.
 
 Face detector
 - HOG + Linear SVM (prefered for fast inference speed on resource constrained device)
@@ -7,6 +7,9 @@ Face detector
 
 Face recognition model
 - based on ResNet-34 from [this work](https://arxiv.org/abs/1512.03385)
+
+Face database
+- All faces should be stored in ```SimpleFR/database```
 
 ## Setup
 Create conda environment
