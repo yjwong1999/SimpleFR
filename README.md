@@ -12,12 +12,14 @@ Face database
 - All faces should be stored in ```SimpleFR/database```
 
 ## Files organization
+```
 SimpleFR
 ├── database
 │   ├── <4 digit>_<name 1>.jpg/png
 │   ├── <4 digit>_<name 2>.jpg/png
 ├── dlib
-├── ask.py  
+├── ask.py
+```
 
 ## Setup
 Create conda environment
