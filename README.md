@@ -1,4 +1,5 @@
 # SimpleFR
+This is a very simple face recognition code based on [face recognition api](https://github.com/ageitgey/face_recognition).
 
 ## Setup
 Create conda environment
