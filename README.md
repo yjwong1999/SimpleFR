@@ -45,6 +45,11 @@ pip install face-recognition==1.3.0
 pip install opencv-python==4.10.0.84
 ```
 
+## Find port number connected to camera
+```
+python3 find_port.py
+```
+
 ## Known errors and solutions related to face_recognition and opencv api
 1. How to install dlib on different OS: [(Refer this link)](https://gist.github.com/ageitgey/629d75c1baac34dfa5ca2a1928a7aeaf)
 2. How to solve imshow function not implemented error: [(Refer this link)](https://github.com/opencv/opencv-python/issues/17#issuecomment-877649472)
