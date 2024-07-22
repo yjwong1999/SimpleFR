@@ -52,3 +52,4 @@ pip install opencv-python==4.10.0.84
 
 ## Acknowledgement
 1. [Face recognition api](https://github.com/ageitgey/face_recognition)
+2. [dlib](https://github.com/davisking/dlib)
