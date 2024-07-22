@@ -14,6 +14,6 @@
 - Faces are close to the camera.
 
 
-### Remarks
+## Remarks
 1. Since the training dataset comprised of mostly western faces, the matching accuracy for non-western may be slightly less accurate. This can be improved by adding more copies of the same person faces with slightly different angle.
-2. Face detection works well when face is closer to the camera, because we are not using SOTA face detection model. 
+2. Face detection works well when face is closer to the camera, because we are not using SOTA face detection model. We purposely do not upgrade the face detection model, because we want to make sure that the face can only be detected in good conditions (lighting, angle, etc) to improve face recognition accuracy.
