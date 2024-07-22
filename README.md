@@ -23,3 +23,5 @@ Install the face recognition api
 pip install face-recognition==1.3.0
 pip install opencv-python==4.10.0.84
 ```
+
+## Useful links for debugging
