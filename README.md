@@ -14,8 +14,8 @@ Face database
 ## Files organization
 SimpleFR
 ├── database
-│   ├── <4 digit>_<name 1>.jpg
-│   ├── <4 digit>_<name 2>.jpg
+│   ├── <4 digit>_<name 1>.jpg/png
+│   ├── <4 digit>_<name 2>.jpg/png
 ├── dlib
 ├── ask.py  
 
