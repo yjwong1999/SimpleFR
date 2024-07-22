@@ -5,6 +5,9 @@ Face detector
 - HOG + Linear SVM (prefered for fast inference speed on resource constrained device)
 - CNNs
 
+Face recognition model
+- based on ResNet-34 from [this work](https://arxiv.org/abs/1512.03385)
+
 ## Setup
 Create conda environment
 ```bash
