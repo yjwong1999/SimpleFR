@@ -7,4 +7,6 @@
 - This version does not have "reorganize" feature to delete registered face(s).
 - Instead, this version will circultate the last <max> number of faces registered into the system.
 
-### run.py
+### run_delete.py
+- This version does have limitation on <max> number of faces registered.
+- Instead, this version offers "reorganize" feature to delete registered face(s).
