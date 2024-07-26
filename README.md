@@ -28,6 +28,11 @@ conda create --name ws python=3.11 -y
 conda activate ws
 ```
 
+## Clone the repo
+```bash
+git clone https://github.com/yjwong1999/SimpleFR.git
+```
+
 Install dlib on macos and Ubuntu
 ```bash
 git clone https://github.com/davisking/dlib.git
