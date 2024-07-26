@@ -8,7 +8,7 @@ import tkinter.simpledialog as simpledialog
 import tkinter.filedialog as filedialog
 
 class VideoStreamApp:
-    def __init__(self, window, window_title, video_source="Video_1.mp4"):
+    def __init__(self, window, window_title, video_source="videos/Video_1.mp4"):
         
         #---------------------------------------------------------------
         # load database
