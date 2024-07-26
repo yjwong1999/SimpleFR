@@ -31,6 +31,7 @@ conda activate ws
 ## Clone the repo
 ```bash
 git clone https://github.com/yjwong1999/SimpleFR.git
+cd SimpleFR
 ```
 
 Install dlib on macos and Ubuntu
