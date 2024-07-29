@@ -1,5 +1,6 @@
 import threading
 import subprocess
+import argparse
 
 def run_command(command):
     """
@@ -10,7 +11,7 @@ def run_command(command):
     except subprocess.CalledProcessError as e:
         print(f"Error executing command: {e}")
 
-def main():
+def main(opt):
     # read source streams 
     with open("source.streams","r") as f:
         sources = f.readlines()
@@ -27,7 +28,7 @@ def main():
     for idx, source in enumerate(sources):
         # command
         try:
-            command = f'python3 run_grid.py --use-yolo --source "{source}" --stream-idx "{idx}"'
+            command = f'python3 run_grid.py --use-yolo --source "{source}" --stream-idx "{idx}" --factor {opt.factor}'
         except:
             raise NotImplementedError
 
@@ -43,8 +44,12 @@ def main():
     for thread in threads:
         thread.join()
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--factor', type=float, default=0.25, help='scale down factor')
+opt = parser.parse_args()
+
 if __name__ == "__main__":
     try:
-        main()
+        main(opt)
     except KeyboardInterrupt:
         print("Exit")
