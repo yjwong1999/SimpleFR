@@ -1,4 +1,3 @@
-import torch
 import cv2
 import os
 import numpy as np
@@ -7,34 +6,10 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import tkinter.simpledialog as simpledialog
 import tkinter.filedialog as filedialog
-import concurrent.futures
-import argparse
 
 class VideoStreamApp:
-    def __init__(self, window, opt):
+    def __init__(self, window, window_title, video_source="videos/Video_1.mp4"):
         
-        #---------------------------------------------------------------
-        # unpack arguments
-        window_title = f'Video Streaming {opt.stream_idx}'
-        
-        video_source = opt.source
-        if video_source.isdigit(): 
-            video_source = int(video_source)
-        
-        self.roi_xyxy = opt.roi_xyxy
-        
-        self.yolo_path = opt.yolo_path        
-        self.use_yolo = opt.use_yolo
-
-        self.factor = 0.25
-        self.inverse_factor = int(1 / self.factor)
-
-        #---------------------------------------------------------------
-        # load YOLO
-        if self.use_yolo:
-            from ultralytics import YOLO
-            self.yolo = YOLO(self.yolo_path)       
-
         #---------------------------------------------------------------
         # load database
         self.load_database()
@@ -49,13 +24,9 @@ class VideoStreamApp:
         self.vid.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
         self.vid.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
         
-        # Set window to grid position based on stream_idx
-        self.set_window_position(opt.stream_idx)        
-        self.window.bind("<Escape>", self.quit_fullscreen)  # Exit full screen on pressing Escape        
-        
-        # # Set window to full screen
-        # self.window.attributes("-fullscreen", True)
-        # self.window.bind("<Escape>", self.quit_fullscreen)  # Exit full screen on pressing Escape
+        # Set window to full screen
+        self.window.attributes("-fullscreen", True)
+        self.window.bind("<Escape>", self.quit_fullscreen)  # Exit full screen on pressing Escape
         
         # Create a frame for buttons
         self.button_frame = tk.Frame(window)
@@ -116,30 +87,9 @@ class VideoStreamApp:
             self.known_face_encodings.append(query_face_encoding)
             self.known_face_names.append(name)        
 
-
-    def set_window_position(self, stream_idx):
-        # Define grid dimensions (2 rows x 3 columns)
-        rows, cols = 2, 3
-        
-        # Calculate the width and height of each grid cell
-        cell_width = self.window.winfo_screenwidth() // cols
-        cell_height = self.window.winfo_screenheight() // rows
-        
-        # Calculate row and column based on stream_idx
-        row = stream_idx // cols
-        col = stream_idx % cols
-        
-        # Calculate the x and y position of the window
-        x_pos = col * cell_width
-        y_pos = row * cell_height
-        
-        # Set the window geometry
-        self.window.geometry(f"{cell_width}x{cell_height}+{x_pos}+{y_pos}")
-        
-        
     def update(self):
         is_in_ROI = False
-        ret, frame = self.vid.read()    
+        ret, frame = self.vid.read()        
         
         if ret:
             # make a copy of original frame
@@ -147,27 +97,14 @@ class VideoStreamApp:
             
             # Only process every other frame of video to save time
             if self.process_this_frame:
-                # Resize frame of video for faster face recognition processing
-                small_frame = cv2.resize(frame, (0, 0), fx=self.factor, fy=self.factor)
+                # Resize frame of video to 1/4 size for faster face recognition processing
+                small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
 
                 # Convert the image from BGR color (which OpenCV uses) to RGB color (which face_recognition uses)
                 rgb_small_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
                 
                 # Find all the faces and face encodings in the current frame of video
-                if self.use_yolo:
-                    results = self.yolo.track(rgb_small_frame, conf=0.5, save_txt=False, persist=True, verbose=False)
-                    boxes = results[0].boxes.xyxy.cpu()
-                    face_locations = []
-                    for box in boxes:
-                        box = box.detach().cpu().numpy()
-
-                        x1, y1, x2, y2 = box
-                        top, right, bottom, left = int(y1), int(x2), int(y2), int(x1)
-
-                        face_locations.append((top, right, bottom, left))
-
-                else:
-                    face_locations = face_recognition.face_locations(rgb_small_frame)
+                face_locations = face_recognition.face_locations(rgb_small_frame)
                 face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
 
                 face_names = []
@@ -187,11 +124,11 @@ class VideoStreamApp:
                 # Display the results
                 if not self.registered:
                     for (top, right, bottom, left), name in zip(face_locations, face_names):
-                        # Scale back up face locations since the frame we detected in was scaled down
-                        top *= self.inverse_factor
-                        right *= self.inverse_factor
-                        bottom *= self.inverse_factor
-                        left *= self.inverse_factor
+                        # Scale back up face locations since the frame we detected in was scaled to 1/4 size
+                        top *= 4
+                        right *= 4
+                        bottom *= 4
+                        left *= 4
 
                         # Draw a box around the face
                         cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
@@ -242,18 +179,18 @@ class VideoStreamApp:
                     cv2.putText(frame, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
                     
                     # draw ROI box
-                    cv2.rectangle(frame, (x1*self.inverse_factor,y1*self.inverse_factor), (x2*self.inverse_factor,y2*self.inverse_factor), (0, 0, 255), 2)   
+                    cv2.rectangle(frame, (x1*4,y1*4), (x2*4,y2*4), (0, 0, 255), 2)   
                     
                     # draw the detected face overlapped with ROI
                     if is_in_ROI:
-                        cv2.rectangle(frame, (f_x1*self.inverse_factor,f_y1*self.inverse_factor), (f_x2*self.inverse_factor,f_y2*self.inverse_factor), (0, 0, 255), 2) 
+                        cv2.rectangle(frame, (f_x1*4,f_y1*4), (f_x2*4,f_y2*4), (0, 0, 255), 2) 
                     
                     
                     
                     
                     
                 # resize to fit full screen
-                frame = cv2.resize(frame, (self.screen_width//3, self.screen_height//2))
+                frame = cv2.resize(frame, (self.screen_width, self.screen_height))
                 
                 # Convert frame to RGB format and display it on the canvas
                 self.photo = ImageTk.PhotoImage(image=Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
@@ -265,7 +202,7 @@ class VideoStreamApp:
                     self.unregister()
                     
                     # crop and resize the face from earlier
-                    cropped_image = ori_frame[f_y1*self.inverse_factor:f_y2*self.inverse_factor, f_x1*self.inverse_factor:f_x2*self.inverse_factor]
+                    cropped_image = ori_frame[f_y1*4:f_y2*4, f_x1*4:f_x2*4]
                     
                     # save image
                     cv2.imwrite("query.png", cropped_image)                                        
@@ -387,22 +324,11 @@ class VideoStreamApp:
         self.window.attributes("-fullscreen", False)
         self.window.destroy()
 
-# get input argument
-parser = argparse.ArgumentParser()
-parser.add_argument('--source', type=str, default='videos/video-1.mp4', help='rtsp link')
-parser.add_argument('--roi-xyxy', type=str, default=None, help='x1y1x2y2 of geofencing region of interest (in range 0 to 1), i.e.: [0.3,0.5,0.3,0.5]')
-parser.add_argument('--stream-idx', type=int, default=0, help='Index for this video streaming')
-parser.add_argument('--use-yolo', action='store_true', help='use yolo instead of HOG + Linear SVM')  
-parser.add_argument('--yolo-path', type=str, default='yolov8m_face.pt', help='YOLO weight path')
-opt = parser.parse_args()
-
 # Create a window and pass it to the VideoStreamApp class
 if __name__ == "__main__":
     try:
         root = tk.Tk()
-        app = VideoStreamApp(root, opt)
+        app = VideoStreamApp(root, "OpenCV Video Stream with Register, Cancel, Reorganize, and Quit Buttons")
         root.mainloop()
     except Exception as e:
         print('Error occurred, quit!', e)
-
-
