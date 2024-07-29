@@ -27,7 +27,7 @@ def main():
     for idx, source in enumerate(sources):
         # command
         try:
-            command = f'python3 run.py --use-yolo --source "{source}" --stream-idx "{idx}"'
+            command = f'python3 run_grid.py --use-yolo --source "{source}" --stream-idx "{idx}"'
         except:
             raise NotImplementedError
 
