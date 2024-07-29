@@ -15,6 +15,7 @@ class VideoStreamApp:
         
         #---------------------------------------------------------------
         # unpack arguments
+        self.stream_idx = opt.stream_idx
         window_title = f'Video Streaming {opt.stream_idx}'
         
         video_source = opt.source
@@ -26,7 +27,7 @@ class VideoStreamApp:
         self.yolo_path = opt.yolo_path        
         self.use_yolo = opt.use_yolo
 
-        self.factor = 0.25
+        self.factor = opt.factor
         self.inverse_factor = int(1 / self.factor)
 
         #---------------------------------------------------------------
@@ -365,6 +366,7 @@ class VideoStreamApp:
 # get input argument
 parser = argparse.ArgumentParser()
 parser.add_argument('--source', type=str, default='videos/video-1.mp4', help='rtsp link')
+parser.add_argument('--factor', type=float, default=0.25, help='scale down factor')
 parser.add_argument('--roi-xyxy', type=str, default=None, help='x1y1x2y2 of geofencing region of interest (in range 0 to 1), i.e.: [0.3,0.5,0.3,0.5]')
 parser.add_argument('--stream-idx', type=int, default=0, help='Index for this video streaming')
 parser.add_argument('--use-yolo', action='store_true', help='use yolo instead of HOG + Linear SVM')  
