@@ -1,5 +1,9 @@
 # Here lies the "archieved" ones 
 
+### run.py
+- This version is the "SimpleFR" without YOLO built-in.
+- Basically, this version is the stable run.py
+
 ### run_basic.py
 - This version only have "register" new ID and "quit" program function.
 
