@@ -65,13 +65,21 @@ pip install opencv-python==4.10.0.84
 python3 find_port.py
 ```
 
-## Run the code now!
+## Run one camera/source
 ```bash
 # without YOLO
 python3 run.py --source <video/stream source>
 
 # with YOLO
 python3 run.py --use-yolo --source <video/stream source>
+```
+
+## Run multiple camera/source
+```bash
+# configure source.streams
+
+# with YOLO
+python3 multi_run.py
 ```
 
 ## Known errors and solutions related to face_recognition and opencv api
