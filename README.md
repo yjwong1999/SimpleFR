@@ -77,6 +77,7 @@ python3 run.py --use-yolo --source <video/stream source>
 ## Run multiple camera/source
 ```bash
 # configure source.streams
+<list down all video/streaming source in source.streams>
 
 # with YOLO
 python3 multi_run.py
