@@ -101,7 +101,7 @@ class VideoStreamApp:
         self.known_face_encodings = []
         self.known_face_names = []
         
-        image_paths = os.listdir('database')
+        image_paths = sorted(os.listdir('database'))
         image_paths = [os.path.join('database', path) for path in image_paths]
         for path in image_paths:
             # load the image and encodings
@@ -406,5 +406,4 @@ if __name__ == "__main__":
         root.mainloop()
     except Exception as e:
         print('Error occurred, quit!', e)
-
 
