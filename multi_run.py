@@ -28,7 +28,10 @@ def main(opt):
     for idx, source in enumerate(sources):
         # command
         try:
-            command = f'python3 run_grid.py --use-yolo --source "{source}" --stream-idx "{idx}" --factor {opt.factor}'
+            if opt.use_yolo:
+                command = f'python3 run_grid.py --use-yolo --source "{source}" --stream-idx "{idx}" --factor {opt.factor}'
+            else:
+                command = f'python3 run_grid.py --source "{source}" --stream-idx "{idx}" --factor {opt.factor}'
         except:
             raise NotImplementedError
 
@@ -46,6 +49,7 @@ def main(opt):
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--factor', type=float, default=0.25, help='scale down factor')
+parser.add_argument('--use-yolo', action='store_true', help='use yolo instead of HOG + Linear SVM')  
 opt = parser.parse_args()
 
 if __name__ == "__main__":
