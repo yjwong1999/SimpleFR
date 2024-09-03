@@ -86,6 +86,27 @@ python3 multi_run.py
 python3 multi_run.py --use-yolo
 ```
 
+## Experiment
+If you want to use onnxruntime-based face recognition instead of C++ (dlib), you can try the following:
+```bash
+pip install scikit-learn
+pip install loguru
+pip install gdown
+pip install ftfy
+pip install regex
+pip install filterpy
+
+pip install onnxruntime
+# pip install onnxruntime-gpu==1.17.0 --index-url=https://pkgs.dev.azure.com/onnxruntime/onnxruntime/_packaging/onnxruntime-cuda-12/pypi/simple
+pip install onnxruntime-gpu --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/onnxruntime-cuda-12/pypi/simple/
+```
+
+After installation, replace the following codes in `run.py` and `run_grid.py`
+```python
+# import face_recognition
+import face_recognition_onnx as import face_recognition
+```
+
 ## Known errors and solutions related to face_recognition and opencv api
 1. How to install dlib on different OS: [(Refer this link)](https://gist.github.com/ageitgey/629d75c1baac34dfa5ca2a1928a7aeaf)
 2. How to solve imshow function not implemented error: [(Refer this link)](https://github.com/opencv/opencv-python/issues/17#issuecomment-877649472)
