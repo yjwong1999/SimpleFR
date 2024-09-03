@@ -365,7 +365,7 @@ class VideoStreamApp:
 
 # get input argument
 parser = argparse.ArgumentParser()
-parser.add_argument('--source', type=str, default='videos/video-1.mp4', help='rtsp link')
+parser.add_argument('--source', type=str, default='videos/Video_1.mp4', help='rtsp link')
 parser.add_argument('--factor', type=float, default=0.25, help='scale down factor')
 parser.add_argument('--roi-xyxy', type=str, default=None, help='x1y1x2y2 of geofencing region of interest (in range 0 to 1), i.e.: [0.3,0.5,0.3,0.5]')
 parser.add_argument('--stream-idx', type=int, default=0, help='Index for this video streaming')
