@@ -74,13 +74,16 @@ python3 run.py --source <video/stream source>
 python3 run.py --use-yolo --source <video/stream source>
 ```
 
-## Run multiple camera/source
+## Run multiple camera(s)/source(s)
 ```bash
 # configure source.streams
 <list down all video/streaming source in source.streams>
 
+# without YOLO
+python3 multi_run.py 
+
 # with YOLO
-python3 multi_run.py
+python3 multi_run.py --use-yolo
 ```
 
 ## Known errors and solutions related to face_recognition and opencv api
