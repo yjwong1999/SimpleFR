@@ -67,7 +67,11 @@ python3 find_port.py
 
 ## Run the code now!
 ```bash
-python3 run.py
+# without YOLO
+python3 run.py --source <video/stream source>
+
+# with YOLO
+python3 run.py --use-yolo --source <video/stream source>
 ```
 
 ## Known errors and solutions related to face_recognition and opencv api
