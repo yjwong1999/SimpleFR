@@ -34,7 +34,7 @@ git clone https://github.com/yjwong1999/SimpleFR.git
 cd SimpleFR
 ```
 
-## If you prefer to use YOLO
+## If you prefer to use YOLO (just install regardless)
 ```bash
 pip install torch==2.0.0 torchvision==0.15.1 torchaudio==2.0.1 --index-url https://download.pytorch.org/whl/cu118
 pip install torch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 --index-url https://download.pytorch.org/whl/cu121
