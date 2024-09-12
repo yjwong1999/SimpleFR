@@ -119,7 +119,7 @@ import face_recognition_onnx as import face_recognition
 1. How to install dlib on different OS: [(Refer this link)](https://gist.github.com/ageitgey/629d75c1baac34dfa5ca2a1928a7aeaf)
 2. How to solve imshow function not implemented error: [(Refer this link)](https://github.com/opencv/opencv-python/issues/17#issuecomment-877649472)
 3. How to solve "Invoked with: <_dlib_pybind11.face_recognition_model_v1 object at 0x1046d73f0>, array([[[ 8, 4, 1], error" error: [(Refer this link)](https://github.com/ageitgey/face_recognition/issues/1516#issuecomment-1615931065)
-4. You might face difficulties installing lap. Please use python 3.8 version to avoid this issue. I directly commented `import lap` in `boxmot/utils/matching.py` to prevent using lap entirely, since the main function of this repo do not uses lap dependencies.
+4. You might face difficulties installing lap. Please use python 3.8 version to avoid this issue. I directly commented `import lap` in `boxmot/utils/matching.py` to prevent using lap entirely, since the main function of this repo do not uses lap dependencies. However, you might need it for YOLO tracking, then follow this [link](https://github.com/Adnedvid/Lap-pkg-for-YOLO/tree/main) for debugging.
 
 ## Acknowledgement
 1. [Face recognition api](https://github.com/ageitgey/face_recognition)
