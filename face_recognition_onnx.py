@@ -8,7 +8,8 @@ import face_recognition
 
 TARGET_SIZE = (112, 112)
 THRESH = 0.35
-FACE_RECOG = ReIDDetectMultiBackend(weights=Path("backbone_90000_vggface2.onnx"), device=torch.device(0), fp16=True)
+DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+FACE_RECOG = ReIDDetectMultiBackend(weights=Path("backbone_90000_vggface2.onnx"), device=DEVICE, fp16=True)
 global COSINE_DIST
 
 def load_image_file(path):
@@ -70,8 +71,9 @@ def compare_faces(known_face_encodings, face_encoding):
     face_encoding = F.normalize(face_encoding, dim=1) 
     
     # convert known_face_encodings to tensor
-    known_face_encodings = torch.from_numpy(np.array(known_face_encodings))
-    
+    known_face_encodings = np.stack(known_face_encodings)
+    known_face_encodings = torch.tensor(known_face_encodings)
+
     # cosine similarity
     cosine_sim = torch.mm(known_face_encodings, face_encoding.transpose(0, 1))
     match_ids        = torch.argmax(cosine_sim, dim=0).cpu().tolist()
