@@ -51,7 +51,7 @@ pip install ultralytics==8.1.24
 ```
 
 
-Install dlib on macos and Ubuntu
+Install dlib on macos and Ubuntu (for windows refer [this guide](https://github.com/sachadee/Dlib) or [that guide](https://github.com/z-mahmud22/Dlib_Windows_Python3.x))
 ```bash
 git clone https://github.com/davisking/dlib.git
 cd dlib
