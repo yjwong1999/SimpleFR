@@ -1,6 +1,6 @@
 # Mikel Broström 🔥 Yolo Tracking 🧾 AGPL-3.0 license
 
-# import lap
+# import lap # yjwong1999 commented this because some devices/os/pip/python version cannot install lap. Since we will not be using the entire boxmot for this SimpleFR, I just comment it for simplicity sake
 import numpy as np
 import scipy
 import torch
