@@ -34,7 +34,9 @@ git clone https://github.com/yjwong1999/SimpleFR.git
 cd SimpleFR
 ```
 
-## Install Pytorch (always refer [the official installation code](https://pytorch.org/get-started/locally/))
+## Install dependencies
+
+Install Pytorch (always refer [the official installation code](https://pytorch.org/get-started/locally/))
 ```bash
 # for GPU
 pip install torch==2.0.0 torchvision==0.15.1 torchaudio==2.0.1 --index-url https://download.pytorch.org/whl/cu118
@@ -43,7 +45,7 @@ pip install torch==2.0.0 torchvision==0.15.1 torchaudio==2.0.1 --index-url https
 pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cpu
 ```
 
-## If you prefer to use YOLO (just install regardless)
+If you prefer to use YOLO (just install regardless)
 ```
 pip install ultralytics==8.1.24
 ```
